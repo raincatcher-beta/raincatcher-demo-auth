@@ -2,6 +2,7 @@ var mbaasApi = require('fh-mbaas-api');
 var express = require('express');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var cors = require('cors');
+var mediator = require('fh-wfm-mediator/mediator')
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
@@ -23,6 +24,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(mbaasExpress.fhmiddleware());
 
 app.use('/hello', require('./lib/hello.js')());
+require('fh-wfm-user/lib/router/mbaas')(mediator, app);
+
+// app modules
+require('./lib/user')(mediator);
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
@@ -30,5 +35,5 @@ app.use(mbaasExpress.errorHandler());
 var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
 var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 app.listen(port, host, function() {
-  console.log("App started at: " + new Date() + " on port: " + port); 
+  console.log("App started at: " + new Date() + " on port: " + port);
 });
