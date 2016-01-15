@@ -9,13 +9,17 @@ module.exports = function(grunt) {
       js: {
         files: ['gruntfile.js', 'application.js', 'lib/**/*.js', 'test/**/*.js'],
         options: {
-          livereload: true
+          livereload: {
+            port: 35732
+          }
         }
       },
       html: {
         files: ['public/views/**', 'app/views/**'],
         options: {
-          livereload: true
+          livereload: {
+            port: 35732
+          }
         }
       }
     },
@@ -47,6 +51,7 @@ module.exports = function(grunt) {
       // environment variables - see https://github.com/jsoverson/grunt-env for more information
       local: {
         FH_USE_LOCAL_DB: true,
+        FH_PORT: 8002,
         FH_SERVICE_MAP: function() {
           /*
            * Define the mappings for your services here - for local development.
