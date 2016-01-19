@@ -2,7 +2,8 @@ var mbaasApi = require('fh-mbaas-api');
 var express = require('express');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var cors = require('cors');
-var mediator = require('fh-wfm-mediator/mediator')
+var mediator = require('fh-wfm-mediator/mediator');
+var bodyParser = require('body-parser');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
@@ -24,6 +25,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(mbaasExpress.fhmiddleware());
 
 app.use('/hello', require('./lib/hello.js')());
+app.use('/api', bodyParser.json({limit: '10mb'}));
 require('fh-wfm-user/lib/router/mbaas')(mediator, app);
 
 // app modules
