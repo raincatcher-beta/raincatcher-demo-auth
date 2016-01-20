@@ -7,7 +7,7 @@
     "express": "~4.0.0",
     "fh-mbaas-api": "5.5.4",
     "fh-wfm-mediator": "0.0.7",
-    "fh-wfm-user": ">=0.0.5",
+    "fh-wfm-user": ">=0.0.6",
     "lodash": "^4.0.0",
     "request": "~2.40.0"
   },
