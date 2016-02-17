@@ -36,5 +36,5 @@
     "debug": "grunt serve",
     "start": "node application.js"
   },
-  "license": "mit"
+  "license": "SEE LICENSE IN LICENSE.txt"
 }
