@@ -7,7 +7,7 @@ var mbaasApi = require('fh-mbaas-api');
 var express = require('express');
 var mbaasExpress = mbaasApi.mbaasExpress();
 var cors = require('cors');
-var mediator = require('fh-wfm-mediator/mediator');
+var mediator = require('fh-wfm-mediator/lib/mediator');
 var bodyParser = require('body-parser');
 
 // list the endpoints which you want to make securable here
