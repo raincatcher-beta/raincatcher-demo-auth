@@ -140,7 +140,7 @@
           "dependencies": {
             "mime-types": {
               "version": "2.1.11",
-              "from": "mime-types@>=2.1.10 <2.2.0",
+              "from": "mime-types@>=2.1.6 <2.2.0",
               "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.11.tgz",
               "dependencies": {
                 "mime-db": {
@@ -341,7 +341,7 @@
             },
             "mime-types": {
               "version": "2.1.11",
-              "from": "mime-types@>=2.1.10 <2.2.0",
+              "from": "mime-types@>=2.1.6 <2.2.0",
               "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.11.tgz",
               "dependencies": {
                 "mime-db": {
@@ -1523,7 +1523,7 @@
         },
         "q": {
           "version": "1.4.1",
-          "from": "q@>=1.4.1 <2.0.0",
+          "from": "q@1.4.1",
           "resolved": "https://registry.npmjs.org/q/-/q-1.4.1.tgz"
         }
       }
@@ -1534,7 +1534,7 @@
       "dependencies": {
         "q": {
           "version": "1.4.1",
-          "from": "q@>=1.4.1 <2.0.0",
+          "from": "q@1.4.1",
           "resolved": "https://registry.npmjs.org/q/-/q-1.4.1.tgz"
         }
       }
@@ -1566,7 +1566,7 @@
           "dependencies": {
             "readable-stream": {
               "version": "2.0.6",
-              "from": "readable-stream@>=2.0.0 <2.1.0",
+              "from": "readable-stream@>=2.0.5 <2.1.0",
               "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.0.6.tgz",
               "dependencies": {
                 "core-util-is": {
