@@ -9,7 +9,8 @@
     "fh-wfm-mediator": "0.0.12",
     "fh-wfm-user": "0.0.18",
     "lodash": "4.7.0",
-    "request": "2.69.0"
+    "request": "2.69.0",
+    "uuid": "^2.0.2"
   },
   "devDependencies": {
     "grunt": "0.4.5",
