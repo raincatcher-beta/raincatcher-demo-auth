@@ -1,25 +1,17 @@
-# FeedHenry Hello World MBaaS Server
+# FeedHenry WFM Auth
 
-This is a blank 'hello world' FeedHenry MBaaS. Use it as a starting point for building your APIs. 
+An Authentication Service for WFM based projects, can be used as mbaas service inside a Red Hat Mobile PLatform instance but also run in standalone mode for local development.
 
-# Group Hello World API
+This repository should be used in conjonction with these following repos :
 
-# hello [/hello]
+- [Portal Demo App](https://github.com/feedhenry-staff/wfm-portal)
+- [Mobile Client Demo App](https://github.com/feedhenry-staff/wfm-mobile)
+- [WFM Cloud App](https://github.com/feedhenry-staff/wfm-cloud)
 
-'Hello world' endpoint.
+## Setup (locally)
 
-## hello [POST] 
+`npm install`
 
-'Hello world' endpoint.
+## Starting (locally)
 
-+ Request (application/json)
-    + Body
-            {
-              "hello": "world"
-            }
-
-+ Response 200 (application/json)
-    + Body
-            {
-              "msg": "Hello world"
-            }
+`grunt`
