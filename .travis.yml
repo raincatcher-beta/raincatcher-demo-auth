@@ -6,7 +6,7 @@ services:
   - docker
 node_js:
   - '0.10'
-  - 4.4.3
+  - '4.4'
 before_install:
   - npm install fh-build -g
   - fh-build template
