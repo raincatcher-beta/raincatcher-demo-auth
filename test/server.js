@@ -8,7 +8,7 @@ app.use('/mbaas', mbaasExpress.mbaas);
 app.use(mbaasExpress.fhmiddleware());
 app.use('/hello', require('lib/hello.js')());
 
-app.use('/', function(req, res){
+app.use('/', function(req, res) {
   res.end('Your Cloud App is Running');
 });
 
@@ -16,11 +16,13 @@ app.use(mbaasExpress.errorHandler());
 
 var server;
 
-exports.before = function(finish){
+exports.before = function(finish) {
   console.log('global before');
-  if (server) return finish();
+  if (server) {
+    return finish();
+  }
   var port = 8052;
-  server = app.listen(port, function(){
+  server = app.listen(port, function() {
     console.log("App started at: " + new Date() + " on port: " + port);
     return finish();
   });
