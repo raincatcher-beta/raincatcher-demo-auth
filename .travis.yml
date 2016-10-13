@@ -8,6 +8,7 @@ node_js:
   - '0.10'
   - '4.4'
 before_install:
+  - npm run-script grunt-eslint
   - npm install fh-build -g
   - fh-build template
 scripts:

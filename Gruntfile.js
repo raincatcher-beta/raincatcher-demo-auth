@@ -129,30 +129,27 @@ module.exports = function(grunt) {
     plato: {
       src: {
         options: {
-          jshint: grunt.file.readJSON('.jshintrc')
+          eslint: grunt.file.readJSON('.eslintrc')
         },
         files: {
           'plato': ['lib/**/*.js']
         }
       }
     },
-    jshint: {
-      files: ['*.js', 'lib/**/*.js', 'test/**/*.js'],
-      options: {
-        jshintrc: true
-      }
-    },
+    eslint: {
+      src: ['*.js', 'lib/**/*.js', 'test/**/*.js']
+    }
   });
 
   // Load NPM tasks
   require('load-grunt-tasks')(grunt, {
     scope: 'devDependencies'
   });
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
 
   // Testing tasks
-  grunt.registerTask('test', ['jshint', 'shell:unit', 'shell:accept']);
-  grunt.registerTask('unit', ['jshint', 'shell:unit']);
+  grunt.registerTask('test', ['eslint', 'shell:unit', 'shell:accept']);
+  grunt.registerTask('unit', ['eslint', 'shell:unit']);
   grunt.registerTask('accept', ['env:local', 'shell:accept']);
 
   // Coverate tasks
