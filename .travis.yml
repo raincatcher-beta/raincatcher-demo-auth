@@ -9,6 +9,7 @@ node_js:
   - '4.4'
 before_install:
   - npm install nsp -g
+  - npm install grunt-cli -g
 script:
   - npm run-script grunt-eslint
   - nsp check
