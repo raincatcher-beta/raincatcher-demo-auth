@@ -4,12 +4,12 @@
   "dependencies": {
     "body-parser": "1.15.0",
     "cors": "2.7.1",
-    "express": "4.13.4",
-    "fh-mbaas-api": "5.13.12",
-    "fh-wfm-mediator": "0.0.14",
-    "fh-wfm-user": "0.0.21",
+    "express": "4.14.0",
+    "fh-mbaas-api": "6.0.1",
+    "fh-wfm-mediator": "0.0.15",
+    "fh-wfm-user": "0.0.23",
     "lodash": "4.7.0",
-    "request": "2.69.0",
+    "request": "2.78.0",
     "shortid": "^2.2.6"
   },
   "devDependencies": {
@@ -35,7 +35,6 @@
   },
   "main": "application.js",
   "scripts": {
-    "preinstall": "chmod +x scripts/preinstall.sh && scripts/preinstall.sh",
     "test": "grunt unit",
     "debug": "grunt serve",
     "start": "node application.js",

@@ -8,9 +8,8 @@ node_js:
   - '0.10'
   - '4.4'
 before_install:
-  - npm install fh-build -g
   - npm install nsp -g
-  - fh-build template
+  - npm install grunt-cli -g
 script:
   - npm run-script grunt-eslint
   - nsp check
