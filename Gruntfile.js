@@ -82,7 +82,7 @@ module.exports = function(grunt) {
           stdout: true,
           stderr: true
         },
-        command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/unit/'
+        command: 'env NODE_PATH=. ./node_modules/.bin/mocha -A -u exports --recursive test/unit/ **/*-spec.js'
       },
       accept: {
         options: {
