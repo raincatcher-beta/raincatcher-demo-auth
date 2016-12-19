@@ -6,9 +6,6 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
-  "parserOptions": {
-     "ecmaVersion": 6
-    },
   "extends": "eslint:recommended",
   "rules": {
     "array-callback-return": "warn",
