@@ -9,7 +9,6 @@ var sessionInit = require('./lib/sessionInit');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
-securableEndpoints = ['/hello'];
 
 var app = express();
 
@@ -26,7 +25,6 @@ app.use(express.static(__dirname + '/public'));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.use('/hello', require('./lib/hello.js')());
 app.use('/api', bodyParser.json({limit: '10mb'}));
 
 /**
