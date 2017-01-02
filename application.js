@@ -54,7 +54,7 @@ function run(cb) {
   var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
   var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-  sessionOptions.appCfg = {port: port, host:host};
+  sessionOptions.appCfg = {port: port, host: host};
 
   sessionInit(app, sessionOptions, function(err) {
     if (err) {
@@ -67,12 +67,15 @@ function run(cb) {
       if (err) {
         return cb(err);
       }
-      require('./lib/user')(mediator);
+      return require('./lib/user')(mediator).then(function() {
+        // Important that this is last!
+        app.use(mbaasExpress.errorHandler());
 
-      // Important that this is last!
-      app.use(mbaasExpress.errorHandler());
-      app.listen(port, host, function(err) {
-        cb(err, port);
+        // Important that this is last!
+        app.use(mbaasExpress.errorHandler());
+        app.listen(port, host, function(err) {
+          cb(err, port);
+        });
       });
     });
   });
