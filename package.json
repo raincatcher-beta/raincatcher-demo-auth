@@ -6,12 +6,8 @@
     "cors": "2.7.1",
     "express": "4.14.0",
     "fh-mbaas-api": "6.1.3",
-    "fh-wfm-mediator": "0.0.15",
-<<<<<<< 75f766e81977251538c3a032abd26128778f3610
+    "fh-wfm-mediator": "0.1.0-rc2",
     "fh-wfm-user": "^0.2.0-alpha.8",
-=======
-    "fh-wfm-user": "0.2.0-alpha.3",
->>>>>>> Use updated user store
     "lodash": "4.7.0",
     "request": "2.78.0",
     "shortid": "^2.2.6"
