@@ -1,6 +1,6 @@
 {
   "name": "fh-app",
-  "version": "2.1.0-alpha",
+  "version": "2.2.0",
   "dependencies": {
     "body-parser": "1.15.0",
     "cors": "2.7.1",
