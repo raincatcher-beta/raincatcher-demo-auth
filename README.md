@@ -25,4 +25,6 @@ By default all example users' passwords is `'123'`.
 # Data reset endpoint
 This service exposes an additional endpoint that is intended for tests and demonstrations at `DELETE /admin/reset`, which causes the underlying data store to be reseeded with the original data for users.
 
+**WARNING**: The above endpoint delete all data created during the life of the application. This is intended for development purposes only. Do not use this for production applications.
+
 Make sure to deactivate this endpoint when building your own solution on top of this demo, by editing [this file](./lib/routes/admin/index.js).
