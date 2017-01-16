@@ -35,6 +35,10 @@
     "time-grunt": "1.3.0"
   },
   "main": "application.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feedhenry-raincatcher/raincatcher-demo-auth.git"
+  },
   "scripts": {
     "test": "grunt unit",
     "debug": "grunt serve",
