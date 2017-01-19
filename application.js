@@ -43,7 +43,7 @@ var sessionOptions = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: process.env.NODE_ENV !== 'development',
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       path: '/'
     }
