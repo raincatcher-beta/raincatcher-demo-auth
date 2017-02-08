@@ -2309,9 +2309,9 @@
       "resolved": "https://registry.npmjs.org/fh-wfm-mediator/-/fh-wfm-mediator-0.0.15.tgz"
     },
     "fh-wfm-user": {
-      "version": "0.2.0",
-      "from": "fh-wfm-user@0.2.0",
-      "resolved": "http://npm.skunkhenry.com/fh-wfm-user/-/fh-wfm-user-0.2.0.tgz",
+      "version": "0.2.2",
+      "from": "fh-wfm-user@0.2.2",
+      "resolved": "http://npm.skunkhenry.com/fh-wfm-user/-/fh-wfm-user-0.2.2.tgz",
       "dependencies": {
         "fh-mbaas-api": {
           "version": "5.14.2",
