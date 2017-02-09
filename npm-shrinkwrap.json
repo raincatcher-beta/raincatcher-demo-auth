@@ -1,6 +1,6 @@
 {
   "name": "fh-app",
-  "version": "2.2.2",
+  "version": "2.2.1",
   "dependencies": {
     "body-parser": {
       "version": "1.15.0",
