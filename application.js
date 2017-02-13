@@ -34,9 +34,15 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * This is being consumed in the raincatcher-user mbaas router.
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
+ *
+ * Redis is default store.
+ * Switch to MongoDB:
+ * 1. make sure to upgrade your database in Data Browser part of the RHMAP
+ * 2. change 'store' attribute of sessionOptions to 'mongo'
+ * 3. deploy
  */
 var sessionOptions = {
-  store: 'mongo',
+  store: 'redis',
   config: {
     secret: process.env.FH_COOKIE_SECRET || 'raincatcher',
     resave: false,
