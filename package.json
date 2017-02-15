@@ -38,7 +38,7 @@
     "url": "https://github.com/feedhenry-raincatcher/raincatcher-demo-auth.git"
   },
   "scripts": {
-    "test": "grunt unit",
+    "test": "WFM_USE_MEMORY_STORE=true grunt unit",
     "debug": "grunt debug",
     "start": "grunt",
     "eslint": "grunt eslint"
