@@ -6,6 +6,7 @@ var mediator = require('fh-wfm-mediator/lib/mediator');
 var bodyParser = require('body-parser');
 var raincatcherUser = require('fh-wfm-user/lib/router/mbaas');
 var sessionInit = require('./lib/sessionInit');
+var _ = require('lodash');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
@@ -35,14 +36,13 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
  *
- * Redis is default store.
- * Switch to MongoDB:
- * 1. make sure to upgrade your database in Data Browser part of the RHMAP
- * 2. change 'store' attribute of sessionOptions to 'mongo'
- * 3. deploy
+ * Mongo is default store.
+ * It is expected to get Mongo Connection Error on the first run on SAAS.
+ * upgrade your database in Data Browser part of the RHMAP to fix this.
+ * re-deploy
  */
 var sessionOptions = {
-  store: 'redis',
+  store: 'mongo',
   config: {
     secret: process.env.FH_COOKIE_SECRET || 'raincatcher',
     resave: false,
@@ -66,7 +66,17 @@ function run(cb) {
     var authResponseExclusionList = ['password'];
     raincatcherUser.init(mediator, app, authResponseExclusionList, sessionOptions, function(err) {
       if (err) {
-        return cb(err);
+        // this needs to be handled here as otherwise app wont start because of early return
+        if (! process.env.FH_MONGODB_CONN_URL) {
+          console.log('*************************************************************************************');
+          console.log('Mongo Connection Error');
+          console.log('Please upgrade database in Data Browser part of the Studio and re-deploy your service');
+          console.log('MongoStore requires FH_MONGODB_CONN_URL system environment variable to be set,');
+          console.log('check Environment Variables part of the Studio');
+          console.log('*************************************************************************************');
+        } else {
+          return cb(err);
+        }
       }
       require('./lib/user')(mediator);
 
