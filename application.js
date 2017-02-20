@@ -35,14 +35,10 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
  *
- * Redis is default store.
- * Switch to MongoDB:
- * 1. make sure to upgrade your database in Data Browser part of the RHMAP
- * 2. change 'store' attribute of sessionOptions to 'mongo'
- * 3. deploy
+ * This application requires a valid mongodb connection string to store session data.
  */
 var sessionOptions = {
-  store: 'redis',
+  store: 'mongo',
   config: {
     secret: process.env.FH_COOKIE_SECRET || 'raincatcher',
     resave: false,
@@ -57,7 +53,12 @@ var sessionOptions = {
 
 // find out mongodb connection string from $fh.db
 function run(cb) {
-  sessionInit(sessionOptions, function(err) {
+  var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
+  var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+  sessionOptions.appCfg = {port: port, host:host};
+
+  sessionInit(app, sessionOptions, function(err) {
     if (err) {
       return cb(err);
     }
@@ -72,15 +73,15 @@ function run(cb) {
 
       // Important that this is last!
       app.use(mbaasExpress.errorHandler());
-
-      var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
-      var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
       app.listen(port, host, function(err) {
         cb(err, port);
       });
     });
   });
 }
+
+
+
 
 run(function(err, port) {
   if (err) {
