@@ -57,7 +57,12 @@ var sessionOptions = {
 
 // find out mongodb connection string from $fh.db
 function run(cb) {
-  sessionInit(sessionOptions, function(err) {
+  var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
+  var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+  sessionOptions.appCfg = {port: port, host:host};
+
+  sessionInit(app, sessionOptions, function(err) {
     if (err) {
       return cb(err);
     }
@@ -72,9 +77,6 @@ function run(cb) {
 
       // Important that this is last!
       app.use(mbaasExpress.errorHandler());
-
-      var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
-      var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
       app.listen(port, host, function(err) {
         cb(err, port);
       });
