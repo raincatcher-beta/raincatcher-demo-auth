@@ -6,7 +6,6 @@ var mediator = require('fh-wfm-mediator/lib/mediator');
 var bodyParser = require('body-parser');
 var raincatcherUser = require('fh-wfm-user/lib/router/mbaas');
 var sessionInit = require('./lib/sessionInit');
-var _ = require('lodash');
 
 // list the endpoints which you want to make securable here
 var securableEndpoints;
@@ -57,54 +56,31 @@ function run(cb) {
   var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
   var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-  // Check if direct mongo connection url exist (available after upgrading db) as mongoStore requires
-  // direct url and will throw an error when trying to connect.
-  if (! process.env.FH_MONGODB_CONN_URL) {
-    idleAndListen(port, host);
-  } else {
-    sessionInit(sessionOptions, function(err) {
+  sessionOptions.appCfg = {port: port, host:host};
+
+  sessionInit(app, sessionOptions, function(err) {
+    if (err) {
+      return cb(err);
+    }
+    // List the user fields which you don't want appearing in the authentication response.
+    // This is being consumed in the raincatcher-user mbaas router.
+    var authResponseExclusionList = ['password'];
+    raincatcherUser.init(mediator, app, authResponseExclusionList, sessionOptions, function(err) {
       if (err) {
         return cb(err);
       }
-      // List the user fields which you don't want appearing in the authentication response.
-      // This is being consumed in the raincatcher-user mbaas router.
-      var authResponseExclusionList = ['password'];
-      raincatcherUser.init(mediator, app, authResponseExclusionList, sessionOptions, function(err) {
-        if (err) {
-          return cb(err);
-        }
-        require('./lib/user')(mediator);
+      require('./lib/user')(mediator);
 
-        // Important that this is last!
-        app.use(mbaasExpress.errorHandler());
-        app.listen(port, host, function(err) {
-          cb(err, port);
-        });
+      // Important that this is last!
+      app.use(mbaasExpress.errorHandler());
+      app.listen(port, host, function(err) {
+        cb(err, port);
       });
     });
-  }
-}
-
-/**
- * Idle and listen, leaves app running in order to allow database upgrade.
- * @param port
- * @param host
- */
-function idleAndListen(port, host) {
-  console.log('*************************************************************************************');
-  console.log('Mongo Connection Error');
-  console.log('Please upgrade database in Data Browser part of the Studio and re-deploy your service');
-  console.log('MongoStore requires FH_MONGODB_CONN_URL system environment variable to be set,');
-  console.log('check Environment Variables part of the Studio');
-  console.log('*************************************************************************************');
-  app.use(mbaasExpress.errorHandler());
-  app.listen(port, host, function(err) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
   });
 }
+
+
 
 
 run(function(err, port) {
