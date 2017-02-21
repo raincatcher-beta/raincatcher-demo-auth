@@ -42,7 +42,7 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * 3. deploy
  */
 var sessionOptions = {
-  store: 'redis',
+  store: 'mongo',
   config: {
     secret: process.env.FH_COOKIE_SECRET || 'raincatcher',
     resave: false,
