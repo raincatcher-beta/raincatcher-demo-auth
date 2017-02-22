@@ -1,6 +1,6 @@
 {
   "name": "fh-app",
-  "version": "2.2.2",
+  "version": "2.2.5",
   "dependencies": {
     "body-parser": {
       "version": "1.15.0",
@@ -140,7 +140,7 @@
           "dependencies": {
             "mime-types": {
               "version": "2.1.14",
-              "from": "mime-types@>=2.1.11 <2.2.0",
+              "from": "mime-types@>=2.1.13 <2.2.0",
               "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.14.tgz",
               "dependencies": {
                 "mime-db": {
@@ -402,7 +402,7 @@
             },
             "mime-types": {
               "version": "2.1.14",
-              "from": "mime-types@>=2.1.11 <2.2.0",
+              "from": "mime-types@>=2.1.13 <2.2.0",
               "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.14.tgz",
               "dependencies": {
                 "mime-db": {
@@ -4350,7 +4350,7 @@
                 },
                 "xtend": {
                   "version": "4.0.1",
-                  "from": "xtend@>=4.0.0 <5.0.0",
+                  "from": "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz",
                   "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz"
                 }
               }
