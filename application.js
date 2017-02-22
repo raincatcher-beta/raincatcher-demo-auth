@@ -32,6 +32,12 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * This is being consumed in the raincatcher-user mbaas router.
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
+ *
+ * Redis is default store.
+ * Switch to MongoDB:
+ * 1. make sure to upgrade your database in Data Browser part of the RHMAP
+ * 2. change 'store' attribute of sessionOptions to 'mongo'
+ * 3. deploy
  */
 var sessionOptions = {
   store: 'mongo',
@@ -49,7 +55,12 @@ var sessionOptions = {
 
 // find out mongodb connection string from $fh.db
 function run(cb) {
-  sessionInit(sessionOptions, function(err) {
+  var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
+  var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+  sessionOptions.appCfg = {port: port, host: host};
+
+  sessionInit(app, sessionOptions, function(err) {
     if (err) {
       return cb(err);
     }
@@ -64,15 +75,17 @@ function run(cb) {
         // Important that this is last!
         app.use(mbaasExpress.errorHandler());
 
-        var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
-        var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-        app.listen(port, host, function() {
-          cb(null, port);
+
+        // Important that this is last!
+        app.use(mbaasExpress.errorHandler());
+        app.listen(port, host, function(err) {
+          cb(err, port);
         });
-      }).catch(cb);
+      });
     });
   });
 }
+
 
 module.exports = run;
 
@@ -80,7 +93,7 @@ module.exports = run;
 // to support unit testing since application initialization is async
 // But if this file is run directly it should just run the express application
 if (require.main === module) {
-  // file called directly, run app from here
+    // file called directly, run app from here
   run(function(err, port) {
     if (err) {
       return console.error(err);
