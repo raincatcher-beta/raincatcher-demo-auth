@@ -33,11 +33,7 @@ app.use('/api', bodyParser.json({limit: '10mb'}));
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
  *
- * Redis is default store.
- * Switch to MongoDB:
- * 1. make sure to upgrade your database in Data Browser part of the RHMAP
- * 2. change 'store' attribute of sessionOptions to 'mongo'
- * 3. deploy
+ * This application requires a valid mongodb connection string to store session data.
  */
 var sessionOptions = {
   store: 'mongo',
@@ -74,7 +70,6 @@ function run(cb) {
       return require('./lib/user')(mediator).then(function() {
         // Important that this is last!
         app.use(mbaasExpress.errorHandler());
-
 
         // Important that this is last!
         app.use(mbaasExpress.errorHandler());
