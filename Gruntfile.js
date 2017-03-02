@@ -45,6 +45,7 @@ module.exports = function(grunt) {
       local: {
         FH_USE_LOCAL_DB: true,
         FH_PORT: 8002,
+        FH_MONGODB_CONN_URL: 'mongodb://localhost:27017/raincatcher-demo-auth-session-store',
         FH_SERVICE_MAP: function() {
           /*
            * Define the mappings for your services here - for local development.

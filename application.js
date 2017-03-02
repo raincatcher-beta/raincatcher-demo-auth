@@ -35,6 +35,8 @@ app.use('/admin', adminRouter(mediator));
  * This is being consumed in the raincatcher-user mbaas router.
  * For available stores, see
  * {@link https://github.com/feedhenry-raincatcher/raincatcher-user/tree/master/lib/session/mongoProvider.js}
+ *
+ * This application requires a valid mongodb connection string to store session data.
  */
 var sessionOptions = {
   store: 'mongo',
@@ -52,7 +54,12 @@ var sessionOptions = {
 
 // find out mongodb connection string from $fh.db
 function run(cb) {
-  sessionInit(sessionOptions, function(err) {
+  var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
+  var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+
+  sessionOptions.appCfg = {port: port, host: host};
+
+  sessionInit(app, sessionOptions, function(err) {
     if (err) {
       return cb(err);
     }
@@ -67,12 +74,10 @@ function run(cb) {
         // Important that this is last!
         app.use(mbaasExpress.errorHandler());
 
-        var port = process.env.FH_PORT || process.env.OPENSHIFT_NODEJS_PORT || 8001;
-        var host = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-        app.listen(port, host, function() {
-          cb(null, port);
+        app.listen(port, host, function(err) {
+          cb(err, port);
         });
-      }).catch(cb);
+      });
     });
   });
 }
@@ -92,4 +97,5 @@ if (require.main === module) {
   });
 } else {
   console.log('application.js required by another file, not running application');
+
 }
