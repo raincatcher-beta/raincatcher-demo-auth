@@ -25,7 +25,8 @@ module.exports = function(grunt) {
           nodeArgs: [],
           delayTime: 1,
           env: {
-            PORT: 3000
+            PORT: 3000,
+            NODE_ENV: 'development'
           },
           cwd: __dirname
         }
@@ -76,7 +77,7 @@ module.exports = function(grunt) {
         options: {
           stdout: true
         },
-        command: 'env NODE_PATH=. node --debug-brk application.js'
+        command: 'env NODE_PATH=. NODE_ENV=development node --debug-brk application.js'
       }
     },
     open: {
