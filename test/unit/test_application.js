@@ -6,7 +6,8 @@ var assert = require('assert');
 var mockExpress = {
   use: function() {},
   listen: sinon.stub().yields([null, 8001]),
-  static: function() {}
+  static: function() {},
+  post: function() {}
 };
 var mockExpressApp = function() {
   return mockExpress;
@@ -63,13 +64,20 @@ var mockCors = function() {
   return mockCorsHandler;
 };
 
+var mockRaincatcherUser = {
+  init: function(mediator, app, authResponseExclusionList, sessionOptions, cb) {
+    return cb();
+  }
+};
+
 // require the main app file, with mocked dependencies
 var runApp = function(cb) {
   mockMbaasApi = createMockMbaasApi();
   proxyquire('../../application.js', {
     'express': mockExpressApp,
     'fh-mbaas-api': mockMbaasApi,
-    'cors': mockCors
+    'cors': mockCors,
+    'fh-wfm-user/lib/router/mbaas': mockRaincatcherUser
   })(cb);
 };
 
@@ -103,7 +111,7 @@ describe('Test mbass functionality', function() {
   it('test express app listen is called', function(done) {
     // var mock = sinon.mock(mockExpress);
     // mock.expects("listen").once().withArgs(8001, '0.0.0.0');
-
+    process.env.FH_MONGODB_CONN_URL = 'mongodb://localhost:27017/raincatcher-demo-auth-session-store';
     runApp(function() {
       assert(mockExpress.listen
         .withArgs(8001, '0.0.0.0')
@@ -113,6 +121,7 @@ describe('Test mbass functionality', function() {
   });
 
   it('test all mbaas routes are mounted', function(done) {
+    process.env.FH_MONGODB_CONN_URL = 'mongodb://localhost:27017/raincatcher-demo-auth-session-store';
     var mock = sinon.mock(mockExpress);
     mock.expects("use").once().withArgs('/sys', mockSysHandler);
     mock.expects("use").once().withArgs('/mbaas', mockMbaasHandler);
