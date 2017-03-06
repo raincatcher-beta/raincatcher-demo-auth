@@ -42,7 +42,7 @@
   "scripts": {
     "test": "WFM_USE_MEMORY_STORE=true grunt unit",
     "debug": "grunt debug",
-    "start": "grunt"
+    "start": "node application.js"
   },
   "license": "MIT"
 }
