@@ -1,6 +1,6 @@
 {
   "name": "fh-app",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "dependencies": {
     "bluebird": "3.4.7",
     "body-parser": "1.15.0",
@@ -8,7 +8,7 @@
     "express": "4.14.0",
     "fh-mbaas-api": "~6.1.7",
     "fh-wfm-mediator": "0.3.1",
-    "fh-wfm-user": "0.3.1",
+    "fh-wfm-user": "0.5.1-alpha.655.1",
     "lodash": "4.7.0",
     "request": "2.78.0",
     "shortid": "^2.2.6"
