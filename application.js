@@ -63,10 +63,10 @@ function run(cb) {
     if (err) {
       return cb(err);
     }
-    // List the user fields which you don't want appearing in the authentication response.
-    // This is being consumed in the raincatcher-user mbaas router.
-    var authResponseExclusionList = ['password'];
-    raincatcherUser.init(mediator, app, authResponseExclusionList, sessionOptions, function(err) {
+    // Configure the user profile fields which you don't want appearing in the User Reads from the database, eg password/sensitive data.
+    // This is being consumed in the raincatcher-user mbaas router for authentication and reading users from the database.
+    var userProfileExclusionList = ['password'];
+    raincatcherUser.init(mediator, app, userProfileExclusionList, sessionOptions, function(err) {
       if (err) {
         return cb(err);
       }
