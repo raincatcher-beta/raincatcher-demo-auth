@@ -4,7 +4,7 @@ var mbaasExpress = $fh.mbaasExpress();
 var cors = require('cors');
 var mediator = require('fh-wfm-mediator/lib/mediator');
 var bodyParser = require('body-parser');
-var raincatcherUser = require('fh-wfm-user/lib/router/mbaas');
+var raincatcherUser = require('fh-wfm-user/lib/mbaas');
 var sessionInit = require('./lib/sessionInit');
 var adminRouter = require('./lib/routes/admin');
 
