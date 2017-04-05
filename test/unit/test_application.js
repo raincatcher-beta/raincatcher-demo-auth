@@ -77,7 +77,7 @@ var runApp = function(cb) {
     'express': mockExpressApp,
     'fh-mbaas-api': mockMbaasApi,
     'cors': mockCors,
-    'fh-wfm-user/lib/router/mbaas': mockRaincatcherUser
+    'fh-wfm-user/lib/mbaas': mockRaincatcherUser
   })(cb);
 };
 
@@ -85,7 +85,7 @@ describe('Test mbass functionality', function() {
 
   it('test instantiate the user module with the required parameters', function(done) {
     // stub the init function in the mbass router in fh-wfm-user
-    var authInit = sinon.stub(require('fh-wfm-user/lib/router/mbaas'), 'init');
+    var authInit = sinon.stub(require('fh-wfm-user/lib/mbaas'), 'init');
     authInit.yields();
 
     // setup paramaters to send
@@ -97,7 +97,7 @@ describe('Test mbass functionality', function() {
     var callback = sinon.spy();
 
     // called the init function in the mbass router in fh-wfm-user
-    require('fh-wfm-user/lib/router/mbaas').init(expectedMediator, expectedApp, expectedAuthResponseExclusionList, callback);
+    require('fh-wfm-user/lib/mbaas').init(expectedMediator, expectedApp, expectedAuthResponseExclusionList, callback);
 
     authInit.restore();
 
