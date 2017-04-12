@@ -1,4 +1,5 @@
 # FeedHenry RainCatcher Auth
+[![Dependency Status](https://img.shields.io/david/feedhenry-raincatcher/raincatcher-demo-auth.svg?style=flat-square)](https://david-dm.org/feedhenry-raincatcher/raincatcher-demo-auth)
 
 An Authentication Service for RainCatcher based projects, can be used as mbaas service inside a Red Hat Mobile PLatform instance but also run in standalone mode for local development.
 
