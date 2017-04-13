@@ -1,5 +1,5 @@
 {
-  "name": "fh-app",
+  "name": "fh-wfm-demo-auth",
   "version": "2.3.0",
   "dependencies": {
     "bluebird": "3.4.7",
