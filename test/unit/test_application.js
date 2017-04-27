@@ -77,7 +77,14 @@ var runApp = function(cb) {
     'express': mockExpressApp,
     'fh-mbaas-api': mockMbaasApi,
     'cors': mockCors,
-    'fh-wfm-user/lib/mbaas': mockRaincatcherUser
+    'fh-wfm-user/lib/mbaas': mockRaincatcherUser,
+    './lib/sessionInit': proxyquire('../../lib/sessionInit', {
+      'fh-mbaas-api': {
+        db: function(options, cb) {
+          return cb(null, 'some string');
+        }
+      }
+    })
   })(cb);
 };
 
@@ -111,7 +118,6 @@ describe('Test mbass functionality', function() {
   it('test express app listen is called', function(done) {
     // var mock = sinon.mock(mockExpress);
     // mock.expects("listen").once().withArgs(8001, '0.0.0.0');
-    process.env.FH_MONGODB_CONN_URL = 'mongodb://localhost:27017/raincatcher-demo-auth-session-store';
     runApp(function() {
       assert(mockExpress.listen
         .withArgs(8001, '0.0.0.0')
@@ -121,7 +127,6 @@ describe('Test mbass functionality', function() {
   });
 
   it('test all mbaas routes are mounted', function(done) {
-    process.env.FH_MONGODB_CONN_URL = 'mongodb://localhost:27017/raincatcher-demo-auth-session-store';
     var mock = sinon.mock(mockExpress);
     mock.expects("use").once().withArgs('/sys', mockSysHandler);
     mock.expects("use").once().withArgs('/mbaas', mockMbaasHandler);
