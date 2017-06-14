@@ -5,16 +5,15 @@ services:
   - mongodb
   - docker
 node_js:
-  - '0.10'
-  - '4.4'
+  - '4.4.3'
+  - '6.9.1'
 before_install:
   - npm install grunt-cli -g
 script:
   - npm test
-  - >-
-    bash <(curl
-    https://gist.githubusercontent.com/raincatcher-bot/01ac4cdb3b0770bdb58489dbc17ed6b6/raw/6205a628c3616f6736fd866d5f0fba0a781ec1e4/sonarqube.sh)
-install: npm install
+  - bash <(curl https://gist.githubusercontent.com/raincatcher-bot/01ac4cdb3b0770bdb58489dbc17ed6b6/raw/6205a628c3616f6736fd866d5f0fba0a781ec1e4/sonarqube.sh)
+install:
+  - npm install
 notifications:
   email: false
   slack:

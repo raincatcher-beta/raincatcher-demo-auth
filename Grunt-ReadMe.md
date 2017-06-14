@@ -19,20 +19,6 @@ Note that 'grunt serve' supports live reload, i.e. it will monitor for any chang
 
 Run ```grunt debug``` to debug this App locally. This task uses [Node Inspector](https://github.com/node-inspector/node-inspector) to debug your application, and will open the Debugger at 'application.js' in Google Chrome. See the documentation for [Node Inspector](https://github.com/node-inspector/node-inspector) for more information on how to use Node Inspector.
 
-## grunt test
-
-Run ```grunt test``` to run the unit tests for this App.
-
-## grunt coverage
-
-This App uses [Istanbul](https://github.com/gotwarlost/istanbul) for generating code coverage for your tests.
-
-Run ```grunt coverage``` to run code coverage for this App.
-
-## grunt analysis
-
-Run ```grunt analysis``` to get a static analysis report of your code. This task uses [Plato](https://github.com/es-analysis/plato) to generate the report. See the documentaion for [Plato](https://github.com/es-analysis/plato) for more information on how to use and configure Plato.
-
 ## Environment variables
 
 The [grunt env](https://www.npmjs.org/package/grunt-env) plugin is included by default. To set your own environment variables, modify the `env` config accordingly, e.g.
