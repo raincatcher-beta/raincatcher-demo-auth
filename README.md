@@ -1,6 +1,8 @@
 # FeedHenry RainCatcher Auth
 [![Dependency Status](https://img.shields.io/david/feedhenry-raincatcher/raincatcher-demo-auth.svg?style=flat-square)](https://david-dm.org/feedhenry-raincatcher/raincatcher-demo-auth)
 
+> **Note:** This repository is no longer used. All active development was moved to new [raincatcher-core](https://github.com/feedhenry-raincatcher/raincatcher-core) repository.
+
 An Authentication Service for RainCatcher based projects, can be used as mbaas service inside a Red Hat Mobile PLatform instance but also run in standalone mode for local development.
 
 This repository should be used in conjunction with these following repos :
